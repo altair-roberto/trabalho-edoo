@@ -73,7 +73,11 @@ Exemplo de entrada:
 
 Exemplo de saída:
 Duração de aula de SO-T20 ultrapassa os limites permitidos
+
 M13 está com mais de uma turma alocada no mesmo horário: EDOO-T01,TRC3-T01
+
 IS está ministrando duas turmas no mesmo horário: EDOO-T01,TRC3-T01
+
 OD-T01 é uma turma inexistente
+
 SO-T20 está sendo ministrada por mais de um professor: OP, IS
