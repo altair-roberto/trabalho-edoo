@@ -51,34 +51,30 @@ ou professor), mantenha a primeira informação armazenada como a correta e não
 
 Exemplo de entrada:
 
-“Irineu Sotoma”, “IS”
-“Outro Professor”, “OP”
-“Estruturas de Dados e Programação Orientada a Objetos - T01”, “EDOO-T01”
-“Tópicos em Redes de Computadores III - T01”, “TRC3-T01”
-“Sistemas Operacionais - T20”, “SO-T20”
-“Laboratório de Ensino I”, “LAB1”
-“Sala do Multiuso M13”, “M13”
-“Sala do Multiuso M12”, “M12”
-“Laboratório de Ensino X”, “LABX”
-“SO-T20”, “2”, “7h15”, “4”, “M12”
-“EDOO-T01”, “2”, “18h30”, “2”, “LAB1”
-“EDOO-T01”, “4”, “18h30”, “2”, “M13”
-“EDOO-T01”, “6”, “18h30”, “2”, “LAB1”
-“TRC3-T01”, “4”, “18h30”, “2”, “M13”
-“EDOO-T01”, “IS”
-“TRC3-T01”, “IS”
-“SO-T20”, “OP”
-“OD-T01”, “IS”
-“SO-T20”, “IS”
+“Irineu Sotoma”, “IS”\
+“Outro Professor”, “OP”\
+“Estruturas de Dados e Programação Orientada a Objetos - T01”, “EDOO-T01”\
+“Tópicos em Redes de Computadores III - T01”, “TRC3-T01”\
+“Sistemas Operacionais - T20”, “SO-T20”\
+“Laboratório de Ensino I”, “LAB1”\
+“Sala do Multiuso M13”, “M13”\
+“Sala do Multiuso M12”, “M12”\
+“Laboratório de Ensino X”, “LABX”\
+“SO-T20”, “2”, “7h15”, “4”, “M12”\
+“EDOO-T01”, “2”, “18h30”, “2”, “LAB1”\
+“EDOO-T01”, “4”, “18h30”, “2”, “M13”\
+“EDOO-T01”, “6”, “18h30”, “2”, “LAB1”\
+“TRC3-T01”, “4”, “18h30”, “2”, “M13”\
+“EDOO-T01”, “IS”\
+“TRC3-T01”, “IS”\
+“SO-T20”, “OP”\
+“OD-T01”, “IS”\
+“SO-T20”, “IS”\
 
 Exemplo de saída:
 
-Duração de aula de SO-T20 ultrapassa os limites permitidos
-
-M13 está com mais de uma turma alocada no mesmo horário: EDOO-T01,TRC3-T01
-
-IS está ministrando duas turmas no mesmo horário: EDOO-T01,TRC3-T01
-
-OD-T01 é uma turma inexistente
-
-SO-T20 está sendo ministrada por mais de um professor: OP, IS
+Duração de aula de SO-T20 ultrapassa os limites permitidos\
+M13 está com mais de uma turma alocada no mesmo horário: EDOO-T01,TRC3-T01\
+IS está ministrando duas turmas no mesmo horário: EDOO-T01,TRC3-T01\
+OD-T01 é uma turma inexistente\
+SO-T20 está sendo ministrada por mais de um professor: OP, IS\
