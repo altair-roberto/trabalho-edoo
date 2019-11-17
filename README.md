@@ -72,6 +72,7 @@ Exemplo de entrada:
 “SO-T20”, “IS”
 
 Exemplo de saída:
+
 Duração de aula de SO-T20 ultrapassa os limites permitidos
 
 M13 está com mais de uma turma alocada no mesmo horário: EDOO-T01,TRC3-T01
