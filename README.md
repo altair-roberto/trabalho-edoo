@@ -50,7 +50,7 @@ ou professor), mantenha a primeira informação armazenada como a correta e não
 4. Um exemplo de entrada e saída é:
 
 Exemplo de entrada:
-
+<pre>
 “Irineu Sotoma”, “IS”\
 “Outro Professor”, “OP”\
 “Estruturas de Dados e Programação Orientada a Objetos - T01”, “EDOO-T01”\
@@ -70,11 +70,12 @@ Exemplo de entrada:
 “SO-T20”, “OP”\
 “OD-T01”, “IS”\
 “SO-T20”, “IS”\
-
+</pre>
 Exemplo de saída:
-
+<pre>
 Duração de aula de SO-T20 ultrapassa os limites permitidos\
 M13 está com mais de uma turma alocada no mesmo horário: EDOO-T01,TRC3-T01\
 IS está ministrando duas turmas no mesmo horário: EDOO-T01,TRC3-T01\
 OD-T01 é uma turma inexistente\
 SO-T20 está sendo ministrada por mais de um professor: OP, IS\
+</pre>
