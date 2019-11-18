@@ -8,6 +8,51 @@
  *
  ******************************************************************************/
 
+/* Arquivo de entrada utilizado para testes:
+"Irineu Sotoma", "IS"
+"Outro Professor", "OP"
+"João da Silva", "JS"
+
+"Estrutura de Dados e Programacao Orientada a Objetos - T01", "EDOO-T01"
+"Topicos em Redes de Computadores III - T01", "TRC3-T01"
+"Sistemas Operacionais - T20", "SO-T20"
+"Inteligencia Artificial - T-05", "IA-T05"
+"Banco de Dados - T02", "BD-T02"
+
+"Laboratorio de Ensino I", "LAB1"
+"Sala do Multiuso M13", "M13"
+"Sala do Multiuso M12", "M12"
+"Sala do Multiuso M10", "M10"
+"Laboratorio de Ensino X", "LABX"
+
+"SO-T20", "2", "7h15", "4", "M12"
+"EDOO-T01", "2", "18h30", "2", "LAB1"
+"EDOO-T01", "4", "18h30", "2", "M13"
+"EDOO-T01", "6", "18h30", "2", "LAB1"
+"TRC3-T01", "4", "18h30", "2", "M13"
+"TRC3-T01", "4", "8h15", "2", "M13"
+"SO-T20", "2", "7h15", "4", "M11"
+"LFA-T01", "2", "7h15", "2", "M9"
+"SO-T20", "2", "7h14", "4", "M12"
+"IA-T05", "4", "18h30", "2", "M12"
+"SO-T20", "3", "8h15", "1", "LABX"
+"TRC3-T01", "5", "7h15", "2", "M10"
+"TRC3-T01", "2", "18h30", "2", "M10"
+"TRC3-T01", "4", "13h15", "2", "M13"
+"TRC3-T01", "6", "10h25", "2", "M13"
+"BD-T02", "3", "20h40", "1", "LABX"
+
+"EDOO-T01", "IS"
+"IA-T05", "IS"
+"TRC3-T01", "IS"
+"SO-T20", "OP"
+"OD-T01", "IS"
+"SO-T20", "IS"
+"LFA-T01", "LM"
+"BD-T02", "JS"
+
+*/
+
 import edu.princeton.cs.algs4.*;
 import java.util.ArrayList;
 
@@ -155,6 +200,7 @@ public class Verifica {
 				int duracao = Integer.parseInt(strArray[3]);
 				duracao = duracao * 100;
 
+				// verifica se a duração da aula não sobrepõe nenhum intervalos de descanso
 				String inicio = strArray[2];
 				inicio = inicio.replaceAll("h", "");
 				int inicioInt = Integer.parseInt(inicio);
@@ -201,6 +247,27 @@ public class Verifica {
 					if (inicioInt + duracao > 2230) {
 						mensagensDeErro += "Duração de aula de " + strArray[0] + " ultrapassa os limites permitidos\n";
 						horarioValido = false;
+					}
+				}
+
+				// verifica se o horário da aula se sobrepõe à outra turma cadastrada na mesma sala
+				if (!stTurma.isEmpty()) {
+					loops:
+					for (String s : stDadosTurma.keys()) {
+						for (Turma t : stDadosTurma.get(s)) {
+							// se o dia a e sala são iguais
+							if (strArray[1].compareTo(t.getDia()) == 0 && strArray[4].compareTo(t.getLocal()) == 0) {
+								int tInicio = Integer.parseInt(t.getHora().replaceAll("h", ""));
+								int tDuracao = Integer.parseInt(t.getDuracao()) * 100;
+								
+								if ((inicioInt >= tInicio && inicioInt <= (tInicio + duracao)) ||
+								((inicioInt + duracao) >= tInicio && (inicioInt + duracao) <= (tInicio + tDuracao))) {
+									mensagensDeErro += "Horário da aula sobrepõe horário de turma já cadastrada: " + t.getNome() + ", " + strArray[0] + "\n";
+									horarioValido = false;
+									break loops;
+								}
+							}
+						}
 					}
 				}
 			}
@@ -261,16 +328,19 @@ public class Verifica {
 
 			// checa se o professor dá aula para outra turma no mesmo horário
 			boolean conflitoDeHorarios = false;
-			if (stProfessorTurma.contains(strArray[1]) && stDadosTurma.contains(strArray[0])) {
+			if (stProfessorTurma.contains(strArray[1]) && stTurmaProfessor.contains(strArray[0]) &&
+										  stDadosTurma.contains(strArray[0])) {
 				loops:
 				for (String s : stProfessorTurma.get(strArray[1])) {
-					for (Turma t1 : stDadosTurma.get(strArray[0])) {
-						for (Turma t2 : stDadosTurma.get(s)) {
-							if (t1.getHora().compareTo(t2.getHora()) == 0) {
-								conflitoDeHorarios = true;
-								mensagensDeErro += strArray[1] + " está ministrando duas turmas no mesmo horario: " +
-									t2.getNome() + ", " + strArray[0] + "\n";
-									break loops;
+					if (stDadosTurma.contains(s)) {
+						for (Turma t1 : stDadosTurma.get(s)) {
+							for (Turma t2 : stDadosTurma.get(strArray[0])) {
+								if (t1.getHora().compareTo(t2.getHora()) == 0) {
+									conflitoDeHorarios = true;
+									mensagensDeErro += strArray[1] + " está ministrando duas turmas no mesmo horario: " +
+										t2.getNome() + ", " + strArray[0] + "\n";
+										break loops;
+								}
 							}
 						}
 					}
@@ -291,8 +361,8 @@ public class Verifica {
 			}
 		}
 
-		/*// exibe informacoes armazenadas
-		StdOut.println("LISTA DE PROFESSORES");
+		// exibe informacoes armazenadas
+		/*StdOut.println("LISTA DE PROFESSORES");
 		for (String s : stProfessor.keys()) {
 			StdOut.println(s + ": " + stProfessor.get(s));
 		}
